@@ -11,14 +11,16 @@ class Monster(string name, int hp, int[] dmg_range, int id) : ICreature
         return $"{Name}: {HP} HP, {DMG_range[0]} min DMG, {DMG_range[1]} max DMG";
     }
 
-    public bool TakeDamage(int damage)
+    public bool TakeDamage(int damage, int modif = 0)
     {
-        this.HP -= damage;
+        if (modif >= damage) return true;
+        this.HP -= damage - modif;
         return this.HP <= 0;
     }
 
     public int DoDamage(int modif = 0)
     {
+        // does random damage in the DMG_range
         return Rand.Next(DMG_range[0], DMG_range[1]) + modif;
     }
 }

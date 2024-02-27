@@ -6,7 +6,7 @@ class GameLoop
         // make player
         System.Console.WriteLine("what is ur name?: ");
         string name = Console.ReadLine() ?? "jeremy";
-        System.Console.WriteLine("nice to meet you. your name sucks to it is now Jeremy...");
+        System.Console.WriteLine("nice to meet you. your name sucks, so now it is Jeremy...");
         Player player = new Player("Jeremy", 50, new int[] { 0, 8 }, 0);
 
         // make levels
@@ -15,7 +15,7 @@ class GameLoop
             new Level1(),
             null,
             new Level2(),
-            null
+            new Level3()
         };
 
         //make map
@@ -24,13 +24,14 @@ class GameLoop
         // main game loop
         while (true)
         {
-            System.Console.WriteLine("map:/n");
-            map.PrintMap();
+
 
             //move in map
             bool moved = false;
             while (!moved)
             {
+                System.Console.WriteLine("map:\n");
+                map.PrintMap();
                 System.Console.WriteLine("move (N/E/S/W) (I voor inventory)");
                 switch (Console.ReadLine())
                 {
@@ -53,6 +54,10 @@ class GameLoop
                     default:
                         System.Console.WriteLine("invalid input");
                         break;
+                }
+                if (!moved)
+                {
+                    System.Console.WriteLine("can not go there");
                 }
             }
 

@@ -57,8 +57,7 @@ public class Inventory
             }
             return false;
         }
-
-
+        return false;
     }
 
     public bool AddItem(Item toAdd)
@@ -76,10 +75,7 @@ public class Inventory
         }
 
         Items.Add(toAdd);
-
-
-
-
+        return true;
     }
 
     public void DisplayInventory()
@@ -100,11 +96,33 @@ public class Inventory
             {
                 int HP = item.HpMod;
                 Items.Remove(item);
+<<<<<<< HEAD
+                Console.WriteLine($" You used an Item Health is now {HP}");
+            }
+            else
+            {
+                Monster.TakeDamage(item.MaxdmgMod);
+                Items.Remove(item);
+                Console.WriteLine($"You have used {item.Name} enemy took {item.MaxdmgMod} damage");
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> b1e4a69bdc5921255fe3634ab40a3b4077098a2b
+            }
+        }
+        else
+        {
+            Console.WriteLine($"No item found {item.Name}");
+        }
+    }   
+=======
                 return HP;
             }
         }
         return 0;
     }
+>>>>>>> ebcf0f65293954484fde08a4fa412dbec6a3d705
 
 
 

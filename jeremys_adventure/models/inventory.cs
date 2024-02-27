@@ -82,7 +82,16 @@ public class Inventory
 
     }
 
+    public void DisplayInventory()
+    {
+        Console.WriteLine("Items in Inventory");
+        foreach (var item in Items)
+        {
+            Console.WriteLine($"Name: {item.Name},Amount: {item.Amount}, Consumable: {item.Consumable}");
+        }
+    }
 
+    public void UseItem(string itemName) { }
 
 
 }

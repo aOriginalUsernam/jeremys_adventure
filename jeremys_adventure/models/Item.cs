@@ -21,13 +21,13 @@ public class Item(string Name, int MindmgMod, int MaxdmgMod, int HpMod, int Amou
         Item SpaceGun =  new Item ("Space Gun", 1, 80, 0, 1, false);
         Item apple = new Item("Apple", 0, 0, 15, 1, true);
 
-        Inventory.items.Add(knife);
-        Inventory.items.Add(HealthPotion);
-        Inventory.items.Add(Poison);
-        Inventory.items.Add(EneryBar);
-        Inventory.items.Add(sword);
-        Inventory.items.Add(SpaceGun);
-        Inventory.items.Add(apple);
+        //Inventory.items.Add(knife);
+        //Inventory.items.Add(HealthPotion);
+        //Inventory.items.Add(Poison);
+        //Inventory.items.Add(EneryBar);
+        //Inventory.items.Add(sword);
+        //Inventory.items.Add(SpaceGun);
+        //Inventory.items.Add(apple);
 
     }
 

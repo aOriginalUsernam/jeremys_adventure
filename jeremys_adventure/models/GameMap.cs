@@ -16,11 +16,6 @@ public class GameMap
         UP,
         DOWN
     }
-    public interface ILevel
-    {
-        public string Name { get; set; }
-    }
-
     public GameMap(List<ILevel?> levels, int width, int height)
     {
         this.CurrentX = 0;

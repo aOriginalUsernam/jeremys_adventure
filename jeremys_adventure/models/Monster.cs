@@ -1,10 +1,17 @@
-class Monster(string name, int hp, int[] dmg_range, int id) : ICreature
+class Monster : ICreature
 {
-    public int ID { get; set; } = id;
-    public string Name { get; set; } = name;
-    public int HP { get; set; } = hp;
-    public int[] DMG_range { get; set; } = dmg_range;
+    public int ID { get; set; }
+    public string Name { get; set; }
+    public int HP { get; set; }
+    public int[] DMG_range { get; set; }
     private Random Rand { get; set; } = new();
+    public Monster(string name, int hp, int[] dmg_range, int id)
+    {
+        Name = name;
+        HP = hp;
+        DMG_range = dmg_range;
+        ID = id;
+    }
 
     public string GetStats()
     {

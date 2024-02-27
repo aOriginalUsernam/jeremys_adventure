@@ -6,7 +6,8 @@ class GameLoop
         // make player
         System.Console.WriteLine("what is ur name?: ");
         string name = Console.ReadLine() ?? "jeremy";
-        Player player = new(name, 15, new int[] { 4, 7 }, 0);
+        System.Console.WriteLine("nice to meet you. your name sucks to it is now Jeremy...");
+        Player player = new Player("Jeremy", 50, new int[] { 0, 8 }, 0);
 
         // make levels
         List<ILevel?> levels = new()
@@ -47,7 +48,7 @@ class GameLoop
                         break;
                     case "I":
                         System.Console.WriteLine(player.GetStats());
-                        player.
+                        player.Items.DisplayInventory();
                         break;
                     default:
                         System.Console.WriteLine("invalid input");
@@ -60,7 +61,7 @@ class GameLoop
             ILevel? level = map.GetCurrentLevel();
             if (level != null)
             {
-                isAlive = level.StartLevel();
+                isAlive = level.StartLevel(player);
             }
             else
             {

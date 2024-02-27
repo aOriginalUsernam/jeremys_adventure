@@ -11,7 +11,7 @@ public class Item(string Name, int MindmgMod, int MaxdmgMod, int HpMod, int Amou
     
     private void AllItems()
     {
-        List<Item> AllItemsList = new();
+        
 
         Item knife = new Item("knife", 5, 10, 0, 1, false);
         Item HealthPotion = new Item("Health Potion", 0, 0, 20, 1, true);
@@ -21,15 +21,13 @@ public class Item(string Name, int MindmgMod, int MaxdmgMod, int HpMod, int Amou
         Item SpaceGun =  new Item ("Space Gun", 1, 80, 0, 1, false);
         Item apple = new Item("Apple", 0, 0, 15, 1, true);
 
-        AllItemsList.Add(knife);
-        AllItemsList.Add(HealthPotion);
-        AllItemsList.Add(Poison);
-        AllItemsList.Add(EneryBar);
-        AllItemsList.Add(sword);
-        AllItemsList.Add(SpaceGun);
-        AllItemsList.Add(apple);
-
-        return AllItemsList;
+        Inventory.items.Add(knife);
+        Inventory.items.Add(HealthPotion);
+        Inventory.items.Add(Poison);
+        Inventory.items.Add(EneryBar);
+        Inventory.items.Add(sword);
+        Inventory.items.Add(SpaceGun);
+        Inventory.items.Add(apple);
 
     }
 

@@ -91,7 +91,21 @@ public class Inventory
         }
     }
 
-    public void UseItem(string itemName) { }
+    public void UseItem(string itemName)
+    {
+        Item item = items.Find(i => i.Name.ToLower() == itemName.ToLower());
+        if (item != null)
+        {
+            if (item.Consumable)
+            {
+                Player.HP += item.HpMod;
+                Items.Remove(item);
+
+
+            }
+        }
+    }
+
 
 
 }

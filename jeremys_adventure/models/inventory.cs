@@ -100,11 +100,21 @@ public class Inventory
             {
                 Player.HP += item.HpMod;
                 Items.Remove(item);
+                Console.WriteLine($" You used an Item Health is now {HP}");
+            }
+            else
+            {
+                Monster.TakeDamage(item.MaxdmgMod);
+                Items.Remove(item);
+                Console.WriteLine($"You have used {item.Name} enemy took {item.MaxdmgMod} damage");
 
-                
             }
         }
-    }
+        else
+        {
+            Console.WriteLine($"No item found {item.Name}");
+        }
+    }   
 
 
 

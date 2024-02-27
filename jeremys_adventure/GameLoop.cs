@@ -1,3 +1,6 @@
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+
 class GameLoop
 {
     public static void StartGame()
@@ -13,7 +16,7 @@ class GameLoop
         {
             new Level1(),
             null,
-            new level2(),
+            new Level2(),
             null
         };
 
@@ -23,7 +26,50 @@ class GameLoop
         // main game loop
         while (true)
         {
+            System.Console.WriteLine("map:/n");
+            map.PrintMap();
 
+            //move in map
+            bool moved = false;
+            while (!moved)
+            {
+                System.Console.WriteLine("move (N/E/S/W)");
+                switch (Console.ReadLine())
+                {
+                    case "N":
+                        moved = map.MoveTo(GameMap.Direction.UP);
+                        break;
+                    case "E":
+                        moved = map.MoveTo(GameMap.Direction.RIGHT);
+                        break;
+                    case "S":
+                        moved = map.MoveTo(GameMap.Direction.DOWN);
+                        break;
+                    case "W":
+                        moved = map.MoveTo(GameMap.Direction.LEFT);
+                        break;
+                    default:
+                        System.Console.WriteLine("invalid input");
+                        break;
+                }
+            }
+
+            //start level
+            bool isAlive = true;
+            ILevel? level = map.GetCurrentLevel();
+            if (level != null)
+            {
+                isAlive = level.StartLevel();
+            }
+            else
+            {
+                System.Console.WriteLine("nothing here...");
+            }
+            if (!isAlive)
+            {
+                System.Console.WriteLine("you are dead. skill issue");
+                break;
+            }
         }
     }
 }

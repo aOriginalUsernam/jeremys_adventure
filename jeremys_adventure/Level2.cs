@@ -1,9 +1,11 @@
-<<<<<<< HEAD
-using System;
-
-public class Level2
+public class Level2 : ILevel
 {
-    public void Start()
+    private Inventory inventory = new Inventory();
+
+    public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public int[] Pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public bool StartLevel()
     {
         Console.WriteLine("You walk past a farmhouse with a farmer.");
         Console.WriteLine("Would you want to accept his quest? (Y/N)");
@@ -11,10 +13,10 @@ public class Level2
         int snakeCount = 0;
         string questChoice = Console.ReadLine().ToUpper();
 
-        Monster snake1 = new Monster("Baby Slang", 5, new int[] { 0, 5 }, 1);
+        Monster snake1 = new Monster("Baby Snek", 5, new int[] { 0, 5 }, 1);
         Monster snake2 = new Monster("Cobra", 7, new int[] { 0, 3 }, 2);
-        Monster snake3 = new Monster("Koning Slang", 10, new int[] { 0, 5 }, 3);
-        Player player = new Player("Speler", 50, new int[] { 0, 8 });
+        Monster snake3 = new Monster("King Cobra", 10, new int[] { 0, 5 }, 3);
+        Player player = new Player("Jeremy", 50, new int[] { 0, 8 });
 
         if (questChoice == "Y")
         {
@@ -63,18 +65,41 @@ public class Level2
                     }
                 }
             }
-            snakeQuest = false; // Exiting the quest loop
+            snakeQuest = false; //Klaar met quest
+            Console.WriteLine("You finished the quest and went back to the old farmer.");
+            Item reward = new Item("Wooden stick", 1);
+            if (inventory.AddItem(reward)) // Ik hoop dat het adden zo werkt.
+            {
+                Console.WriteLine($"You received a {reward.Name} from the farmer!");
+            }
+        }
+        return true;
+    }
+
+    static void BattlePlayerVsMonster(Player player, Monster monster)
+    {
+        Console.WriteLine($"You encounter a {monster.Name} with {monster.HP} HP.");
+        while (player.HP > 0 && monster.HP > 0)
+        {
+            Console.WriteLine($"You hit the {monster.Name}");
+            monster.TakeDamage(player.DoDamage());
+            Console.WriteLine($"The {monster.Name} has {monster.HP} HP left.");
+
+            if (monster.HP <= 0)
+            {
+                Console.WriteLine($"You defeated the {monster.Name}!");
+                break;
+            }
+
+            Console.WriteLine($"The {monster.Name} attacks you!");
+            player.TakeDamage(monster.DoDamage());
+            Console.WriteLine($"You have {player.HP} HP left.");
+
+            if (player.HP <= 0)
+            {
+                Console.WriteLine($"You died fighting the {monster.Name}.");
+                break;
+            }
         }
     }
-=======
-public class level2 : ILevel
-{
-    public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public int[] Pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-    public bool StartLevel()
-    {
-        throw new NotImplementedException();
-    }
 }
->>>>>>> 7860a838ec7dbe19bdb55641e72b12fb7c36704d

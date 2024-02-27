@@ -2,9 +2,12 @@ public class Level2 : ILevel
 {
     private Inventory inventory = new Inventory();
 
-    public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string Name { get; set; }
     public int[] Pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+    public Level2()
+    {
+        Name = "12 charsLong";
+    }
     public bool StartLevel()
     {
         Console.WriteLine("You walk past a farmhouse with a farmer.");

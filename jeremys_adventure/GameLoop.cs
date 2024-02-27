@@ -1,6 +1,3 @@
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-
 class GameLoop
 {
     public static void StartGame()
@@ -33,7 +30,7 @@ class GameLoop
             bool moved = false;
             while (!moved)
             {
-                System.Console.WriteLine("move (N/E/S/W)");
+                System.Console.WriteLine("move (N/E/S/W) (I voor inventory)");
                 switch (Console.ReadLine())
                 {
                     case "N":
@@ -47,6 +44,10 @@ class GameLoop
                         break;
                     case "W":
                         moved = map.MoveTo(GameMap.Direction.LEFT);
+                        break;
+                    case "I":
+                        System.Console.WriteLine(player.GetStats());
+                        player.
                         break;
                     default:
                         System.Console.WriteLine("invalid input");

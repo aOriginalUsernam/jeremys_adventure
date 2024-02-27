@@ -63,19 +63,19 @@ public class Inventory
 
     public bool AddItem(Item toAdd)
     {
-        if (Items.Any(item => item.name == toAdd.name))
+        if (Items.Any(item => item.Name == toAdd.Name))
         {
             Item result = Items.Find(
             delegate (Item i)
             {
                 return i.Name == toAdd.Name;
             }
-            );
+            ) ?? throw new Exception("item not found");
             result.Amount++;
             return true;
         }
 
-        Items.add(toAdd);
+        Items.Add(toAdd);
 
 
 
@@ -91,19 +91,19 @@ public class Inventory
         }
     }
 
-    public void UseItem(string itemName)
+    public int UseItem(string itemName)
     {
-        Item item = items.Find(i => i.Name.ToLower() == itemName.ToLower());
+        Item? item = this.Items.Find(i => i.Name.ToLower() == itemName.ToLower());
         if (item != null)
         {
             if (item.Consumable)
             {
-                Player.HP += item.HpMod;
+                int HP = item.HpMod;
                 Items.Remove(item);
-
-
+                return HP;
             }
         }
+        return 0;
     }
 
 

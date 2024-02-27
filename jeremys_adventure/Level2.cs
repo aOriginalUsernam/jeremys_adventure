@@ -1,7 +1,11 @@
 public class Level2 : ILevel
 {
     private Inventory inventory = new Inventory();
-    public void Start()
+
+    public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public int[] Pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public bool StartLevel()
     {
         Console.WriteLine("You walk past a farmhouse with a farmer.");
         Console.WriteLine("Would you want to accept his quest? (Y/N)");
@@ -69,6 +73,7 @@ public class Level2 : ILevel
                 Console.WriteLine($"You received a {reward.Name} from the farmer!");
             }
         }
+        return true;
     }
 
     static void BattlePlayerVsMonster(Player player, Monster monster)

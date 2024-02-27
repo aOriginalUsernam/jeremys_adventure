@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using System;
 
 public class Level2
@@ -65,3 +66,15 @@ public class Level2
             snakeQuest = false; // Exiting the quest loop
         }
     }
+=======
+public class level2 : ILevel
+{
+    public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public int[] Pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public bool StartLevel()
+    {
+        throw new NotImplementedException();
+    }
+}
+>>>>>>> 7860a838ec7dbe19bdb55641e72b12fb7c36704d

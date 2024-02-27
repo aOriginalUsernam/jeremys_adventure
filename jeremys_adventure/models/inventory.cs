@@ -1,6 +1,6 @@
 public class Inventory
 {
-    list<Item> Items = new();
+    List<Item> Items = new();
 
     public int[] GetTotalMods()
     {
@@ -15,10 +15,10 @@ public class Inventory
             }
 
             min_dmg += item.MindmgMod * item.Amount;
-            max_dmg += item.MaxdmgModdmgMod * item.Amount;
+            max_dmg += item.MaxdmgMod * item.Amount;
             hp_mod += item.HpMod * item.Amount;
         }
-        return new int []{min_dmg, max_dmg, hp_mod};
+        return new int[] { min_dmg, max_dmg, hp_mod };
     }
 
     public List<Item> get_consumables()
@@ -38,7 +38,7 @@ public class Inventory
 
     public bool RemoveItem(Item toFind)
     {
-        if (item.Consumable)
+        if (toFind.Consumable)
         {
             foreach (var item in Items)
             {
@@ -59,39 +59,53 @@ public class Inventory
         }
 
 
-    }   
+    }
 
     public bool AddItem(Item toAdd)
     {
-       if (Items.Any(item => item.name == toAdd.name))
-       {
+        if (Items.Any(item => item.name == toAdd.name))
+        {
             Item result = Items.Find(
-            delegate(Item i)
+            delegate (Item i)
             {
                 return i.Name == toAdd.Name;
             }
             );
             result.Amount++;
             return true;
-       }
-       
-        Items.add (toAdd);
-       
-        
+        }
 
-        
+        Items.add(toAdd);
+
+
+
+
     }
 
     public void DisplayInventory()
     {
         Console.WriteLine("Items in Inventory");
-        foreach(var item in Items)
+        foreach (var item in Items)
         {
             Console.WriteLine($"Name: {item.Name},Amount: {item.Amount}, Consumable: {item.Consumable}");
         }
     }
 
-    public void UseItem(itemName)
+    public void UseItem(string itemName)
+    {
+        Item item = items.Find(i => i.Name.ToLower() == itemName.ToLower());
+        if (item != null)
+        {
+            if (item.Consumable)
+            {
+                Player.HP += item.HpMod;
+                Items.Remove(item);
+
+
+            }
+        }
+    }
+
 
 
 }

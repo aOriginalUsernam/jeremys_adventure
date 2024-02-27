@@ -67,7 +67,7 @@ class GameLoop
             }
             if (!isAlive)
             {
-                System.Console.WriteLine("you are dead.");
+                System.Console.WriteLine("you are dead. skill issue");
                 break;
             }
         }

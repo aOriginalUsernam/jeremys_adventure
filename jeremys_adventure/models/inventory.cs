@@ -57,29 +57,25 @@ public class Inventory
             }
             return false;
         }
-
-
+        return false;
     }
 
     public bool AddItem(Item toAdd)
     {
-        if (Items.Any(item => item.name == toAdd.name))
+        if (Items.Any(item => item.Name == toAdd.Name))
         {
             Item result = Items.Find(
             delegate (Item i)
             {
                 return i.Name == toAdd.Name;
             }
-            );
+            ) ?? throw new Exception("item not found");
             result.Amount++;
             return true;
         }
 
-        Items.add(toAdd);
-
-
-
-
+        Items.Add(toAdd);
+        return true;
     }
 
     public void DisplayInventory()
@@ -91,15 +87,16 @@ public class Inventory
         }
     }
 
-    public void UseItem(string itemName)
+    public int UseItem(string itemName)
     {
-        Item item = items.Find(i => i.Name.ToLower() == itemName.ToLower());
+        Item? item = this.Items.Find(i => i.Name.ToLower() == itemName.ToLower());
         if (item != null)
         {
             if (item.Consumable)
             {
-                Player.HP += item.HpMod;
+                int HP = item.HpMod;
                 Items.Remove(item);
+<<<<<<< HEAD
                 Console.WriteLine($" You used an Item Health is now {HP}");
             }
             else
@@ -119,6 +116,13 @@ public class Inventory
             Console.WriteLine($"No item found {item.Name}");
         }
     }   
+=======
+                return HP;
+            }
+        }
+        return 0;
+    }
+>>>>>>> ebcf0f65293954484fde08a4fa412dbec6a3d705
 
 
 

@@ -5,6 +5,7 @@ class Player(string name, int hp, int[] dmg_range, int id) : ICreature
     public int HP { get; set; } = hp;
     public int[] DMG_range { get; set; } = dmg_range;
     private Random Rand { get; set; } = new();
+    public Inventory Items { get; }
 
     public string GetStats()
     {

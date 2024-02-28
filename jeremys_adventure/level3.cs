@@ -1,22 +1,22 @@
-public class Level2 : ILevel
+public class Level3 : ILevel
 {
     public string Name { get; set; }
     public int[] Pos { get; set; }
 
-    public Level2()
+    public Level3()
     {
         Name = "Desert";
         Pos = new int[] { 0, 0 };
     }
 
-    public bool StartLevel()
+    public bool StartLevel(Player player)
     {
         Console.WriteLine($"Welcome to the {Name} level!");
 
         Console.WriteLine("You find yourself in the scorching desert.");
         Console.WriteLine("You see an oasis in the distance.");
         Console.WriteLine("Do you want to enter the Oasis? Y/N");
-        string questChoice = Console.ReadLine().ToUpper();
+        string questChoice = (Console.ReadLine() ?? "").ToUpper();
         if (questChoice == "Y")
         {
 
@@ -28,7 +28,7 @@ public class Level2 : ILevel
             BattlePlayerVsMonster(player, bandit1);
             BattlePlayerVsMonster(player, bandit2);
 
-            if (player.Health > 0)
+            if (player.HP > 0)
             {
                 Console.WriteLine("Congratulations! You defeated the bandits and found a treasure chest!");
                 Console.WriteLine("You open the treasure chest and find valuable loot!");
@@ -45,8 +45,7 @@ public class Level2 : ILevel
             Console.WriteLine("You've earned an item to fight monsters!");
             Console.WriteLine("* Poison added to inventory *");
 
-            
-            Inventory.Items.Add(Item.Poison);
+            player.Items.AddItem(new Item("poison", 4, 1, 0, 1, false));
 
             return true;
         }
@@ -57,10 +56,10 @@ public class Level2 : ILevel
         }
     }
 
-    public bool BattlePlayerVsMonster(Player player, Monster monster)
+    private bool BattlePlayerVsMonster(Player player, Monster monster)
     {
         Console.WriteLine($"You encounter {monster.Name}");
-        while (player.Health > 0 && monster.HP > 0)
+        while (player.HP > 0 && monster.HP > 0)
         {
             int playerDamage = player.DoDamage();
             bool monsterDefeated = monster.TakeDamage(playerDamage);

@@ -2,21 +2,23 @@ public class Level2 : ILevel
 {
     private Inventory inventory = new Inventory();
 
-    public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string Name { get; set; }
     public int[] Pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-    public bool StartLevel()
+    public Level2()
+    {
+        Name = "12 charsLong";
+    }
+    public bool StartLevel(Player player)
     {
         Console.WriteLine("You walk past a farmhouse with a farmer.");
         Console.WriteLine("Would you want to accept his quest? (Y/N)");
         bool snakeQuest = false;
         int snakeCount = 0;
-        string questChoice = Console.ReadLine().ToUpper();
+        string questChoice = (Console.ReadLine() ?? "").ToUpper();
 
         Monster snake1 = new Monster("Baby Snek", 5, new int[] { 0, 5 }, 1);
         Monster snake2 = new Monster("Cobra", 7, new int[] { 0, 3 }, 2);
         Monster snake3 = new Monster("King Cobra", 10, new int[] { 0, 5 }, 3);
-        Player player = new Player("Jeremy", 50, new int[] { 0, 8 });
 
         if (questChoice == "Y")
         {
@@ -36,7 +38,7 @@ public class Level2 : ILevel
                 Console.WriteLine($"You have to kill {snakesLeft} more snakes.");
 
                 Console.WriteLine("You head into the snake field. Where do you want to go? (UP/DOWN/LEFT/RIGHT)");
-                string direction = Console.ReadLine().ToUpper();
+                string direction = (Console.ReadLine() ?? "").ToUpper();
 
                 if (direction == "UP" || direction == "DOWN" || direction == "LEFT" || direction == "RIGHT")
                 {
@@ -67,7 +69,7 @@ public class Level2 : ILevel
             }
             snakeQuest = false; //Klaar met quest
             Console.WriteLine("You finished the quest and went back to the old farmer.");
-            Item reward = new Item("Wooden stick", 1);
+            Item reward = new Item("Wooden stick", 1, 1, 0, 1, false);
             if (inventory.AddItem(reward)) // Ik hoop dat het adden zo werkt.
             {
                 Console.WriteLine($"You received a {reward.Name} from the farmer!");

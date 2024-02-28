@@ -1,4 +1,3 @@
-using System.Data;
 using System.Text;
 
 public class GameMap
@@ -62,7 +61,7 @@ public class GameMap
                 }
                 return false;
             case Direction.RIGHT:
-                if (CurrentX >= Width)
+                if (CurrentX < Width)
                 {
                     CurrentX++;
                     return true;
@@ -71,14 +70,14 @@ public class GameMap
             case Direction.UP:
                 if (CurrentY > 0)
                 {
-                    CurrentX--;
+                    CurrentY--;
                     return true;
                 }
                 return false;
             case Direction.DOWN:
-                if (CurrentY <= Height)
+                if (CurrentY < Height)
                 {
-                    CurrentX++;
+                    CurrentY++;
                     return true;
                 }
                 return false;
